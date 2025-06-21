@@ -7,67 +7,63 @@ from logging.handlers import RotatingFileHandler
 
 load_dotenv()
 
-#Bot token @Botfather
-TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "")
+# ======== BOT CONFIGURATION ========
+# Bot token from @BotFather
+TG_BOT_TOKEN = "8003962528:AAEeldXQpAnb0KwvpshGqETEk_4oEhEs3MI"
 
-#Your API ID from my.telegram.org
-APP_ID = int(os.environ.get("APP_ID", ""))
+# Telegram API credentials
+APP_ID = 29774383
+API_HASH = "e452445f51c0892016e5f517c5f6e2d6"
 
-#Your API Hash from my.telegram.org
-API_HASH = os.environ.get("API_HASH", "")
+# Channel and ownership details
+CHANNEL_ID = -1002365072709
+OWNER_ID = 6035243720
+FORCE_SUB_CHANNEL = -1002386120316  # Backup channel
 
-#Your db channel Id
-CHANNEL_ID = int(os.environ.get("CHANNEL_ID", ""))
+# Database configuration
+DB_URI = "mongodb://neetug2025nta1:1U8ZNycmBrPdKQ0m@atlas-sql-6856b206ce5d45775696769d-eiue7k.a.query.mongodb.net/sample_mflix?ssl=true&authSource=admin"
+DB_NAME = "sample_mflix"  # Matches your MongoDB database
 
-#OWNER ID
-OWNER_ID = int(os.environ.get("OWNER_ID", ""))
+# ======== OPTIONAL SETTINGS ========
+# Bot workers (4 is optimal)
+TG_BOT_WORKERS = 4
 
-#Port
-PORT = os.environ.get("PORT", "8080")
+# Auto-delete configuration (0 to disable)
+AUTO_DELETE_TIME = 0  # Disabled by default
+AUTO_DELETE_MSG = "This file will be automatically deleted in {time} seconds."
+AUTO_DEL_SUCCESS_MSG = "File deleted successfully ✅"
 
-#Database 
-DB_URI = os.environ.get("DATABASE_URL", "")
-DB_NAME = os.environ.get("DATABASE_NAME", "filesharexbot")
+# Force subscription message
+FORCE_MSG = "Hello {first}\n\n<b>Join our backup channel to use this bot</b>"
 
-#force sub channel id, if you want enable force sub
-FORCE_SUB_CHANNEL = int(os.environ.get("FORCE_SUB_CHANNEL", "0"))
-JOIN_REQUEST_ENABLE = os.environ.get("JOIN_REQUEST_ENABLED", None)
+# Custom caption (None to disable)
+CUSTOM_CAPTION = None
 
-TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "4"))
+# Security settings
+PROTECT_CONTENT = True  # Prevent file forwarding
 
-#start message
-START_PIC = os.environ.get("START_PIC","")
-START_MSG = os.environ.get("START_MESSAGE", "Hello {first}\n\nI can store private files in Specified Channel and other users can access it from special link.")
+# Admin management
 try:
-    ADMINS=[]
-    for x in (os.environ.get("ADMINS", "").split()):
-        ADMINS.append(int(x))
+    ADMINS = [int(x) for x in (os.environ.get("ADMINS", "6035243720").split())]
 except ValueError:
-        raise Exception("Your Admins list does not contain valid integers.")
+    raise Exception("Admins list contains invalid IDs")
 
-#Force sub message 
-FORCE_MSG = os.environ.get("FORCE_SUB_MESSAGE", "Hello {first}\n\n<b>You need to join in my Channel/Group to use me\n\nKindly Please join Channel</b>")
+# Startup message
+START_PIC = ""  # Add image URL if needed
+START_MSG = "Hello {first}\n\nI securely store files in channels with special access links."
 
-#set your Custom Caption here, Keep None for Disable Custom Caption
-CUSTOM_CAPTION = os.environ.get("CUSTOM_CAPTION", None)
-
-#set True if you want to prevent users from forwarding files from bot
-PROTECT_CONTENT = True if os.environ.get('PROTECT_CONTENT', "False") == "True" else False
-
-# Auto delete time in seconds.
-AUTO_DELETE_TIME = int(os.getenv("AUTO_DELETE_TIME", "0"))
-AUTO_DELETE_MSG = os.environ.get("AUTO_DELETE_MSG", "This file will be automatically deleted in {time} seconds. Please ensure you have saved any necessary content before this time.")
-AUTO_DEL_SUCCESS_MSG = os.environ.get("AUTO_DEL_SUCCESS_MSG", "Your file has been successfully deleted. Thank you for using our service. ✅")
-
-#Set true if you want Disable your Channel Posts Share button
-DISABLE_CHANNEL_BUTTON = os.environ.get("DISABLE_CHANNEL_BUTTON", None) == 'True'
-
+# ======== ADVANCED SETTINGS ========
+PORT = "8080"  # Web server port
+DISABLE_CHANNEL_BUTTON = False  # Show share button
+JOIN_REQUEST_ENABLE = None  # Join requests handling
 BOT_STATS_TEXT = "<b>BOT UPTIME</b>\n{uptime}"
-USER_REPLY_TEXT = "❌Don't send me messages directly I'm only File Share bot!"
+USER_REPLY_TEXT = "❌ Direct messages not supported!"
 
+# Append default admin (CodeXBotz maintainer)
 ADMINS.append(OWNER_ID)
 ADMINS.append(1250450587)
 
+# ======== LOGGING SETUP ========
 LOG_FILE_NAME = "filesharingbot.txt"
 
 logging.basicConfig(
@@ -77,7 +73,7 @@ logging.basicConfig(
     handlers=[
         RotatingFileHandler(
             LOG_FILE_NAME,
-            maxBytes=50000000,
+            maxBytes=50_000_000,  # 50MB
             backupCount=10
         ),
         logging.StreamHandler()
