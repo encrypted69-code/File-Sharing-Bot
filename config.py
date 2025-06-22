@@ -9,7 +9,7 @@ load_dotenv()
 
 # ======== BOT CONFIGURATION ========
 # Bot token from @BotFather
-TG_BOT_TOKEN = "8003962528:AAEeldXQpAnb0KwvpshGqETEk_4oEhEs3MI"
+TG_BOT_TOKEN = "7560608344:AAFGpsfweysBNW1kDMpA2SOGmW64Gqs3EkM"
 
 # Telegram API credentials
 APP_ID = 29774383
@@ -17,7 +17,7 @@ API_HASH = "e452445f51c0892016e5f517c5f6e2d6"
 
 # Channel and ownership details
 CHANNEL_ID = -1002365072709
-OWNER_ID = 6035243720
+OWNER_ID = 6713921355
 FORCE_SUB_CHANNEL = -1002386120316  # Backup channel
 
 # Database configuration
