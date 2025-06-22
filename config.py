@@ -16,9 +16,9 @@ APP_ID = 29774383
 API_HASH = "e452445f51c0892016e5f517c5f6e2d6"
 
 # Channel and ownership details
-CHANNEL_ID = -1002365072709
-OWNER_ID = 6713921355
-FORCE_SUB_CHANNEL = -1002386120316  # Backup channel
+CHANNEL_ID =-1002365072709
+OWNER_ID =6713921355
+FORCE_SUB_CHANNEL =-1002386120316  # Backup channel
 
 # Database configuration
 DB_URI = "mongodb://neetug2025nta1:1U8ZNycmBrPdKQ0m@atlas-sql-6856b206ce5d45775696769d-eiue7k.a.query.mongodb.net/sample_mflix?ssl=true&authSource=admin"
