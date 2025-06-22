@@ -12,8 +12,8 @@ load_dotenv()
 TG_BOT_TOKEN = "7560608344:AAFGpsfweysBNW1kDMpA2SOGmW64Gqs3EkM"
 
 # Telegram API credentials
-APP_ID = 29774383
-API_HASH = "e452445f51c0892016e5f517c5f6e2d6"
+APP_ID = 26613276
+API_HASH = "f733effd34d7c3055286cc27c167a0c4"
 
 # Channel and ownership details
 CHANNEL_ID =-1002365072709
